@@ -18,18 +18,26 @@
   }
   *{box-sizing:border-box; margin:0; padding:0;}
   html{-webkit-text-size-adjust:100%;}
+  [id]{scroll-margin-top:var(--hh,76px);}
+  #top,#main{scroll-margin-top:0;}
+  :focus-visible{outline:3px solid var(--accent); outline-offset:3px; border-radius:2px;}
+  .btn--accent:focus-visible,.btn--outline:focus-visible{outline-color:#fff;}
+  [tabindex="-1"]:focus{outline:none;}
+  .skip-link{position:absolute; left:12px; top:-100px; z-index:100; background:var(--accent); color:#171310; padding:12px 20px; font-weight:700; text-decoration:none; text-transform:uppercase; letter-spacing:.1em; font-size:13px;}
+  .skip-link:focus{top:12px; outline:3px solid #fff; outline-offset:2px;}
   body{font-family:'Work Sans',sans-serif; background:var(--bg); color:var(--ink); line-height:1.65; counter-reset:sec; overflow-x:hidden;}
   h1,h2,h3{font-family:'Oswald',sans-serif; text-transform:uppercase; letter-spacing:.02em; line-height:1.08;}
   .wrap{max-width:1140px; margin:0 auto; padding:0 24px;}
   a{color:inherit;}
   img{display:block; max-width:100%;}
-  .reveal{opacity:0; transform:translateY(28px); transition:opacity .7s ease, transform .7s ease;}
-  .reveal.in{opacity:1; transform:none;}
+  .js .reveal{opacity:0; transform:translateY(28px); transition:opacity .7s ease, transform .7s ease;}
+  .js .reveal.in{opacity:1; transform:none;}
 
   /* top bar + header */
   .topbar{background:var(--accent2); color:#fff; font-size:14px;}
-  .topbar__inner{display:flex; justify-content:space-between; align-items:center; padding:8px 24px; flex-wrap:wrap; gap:4px 16px;}
-  .topbar a{color:#fff; font-weight:700; text-decoration:none; text-transform:uppercase; letter-spacing:.06em; font-size:13px;}
+  .topbar__inner{display:flex; justify-content:space-between; align-items:center; padding:0 24px; flex-wrap:wrap; gap:4px 16px;}
+  .topbar p{padding:8px 0;}
+  .topbar a{display:inline-flex; align-items:center; min-height:44px; color:#fff; font-weight:700; text-decoration:none; text-transform:uppercase; letter-spacing:.06em; font-size:13px;}
   header{position:sticky; top:0; background:rgba(18,15,12,.94); backdrop-filter:blur(6px); border-bottom:1px solid var(--line); z-index:30; transition:box-shadow .3s;}
   header.scrolled{box-shadow:0 8px 24px rgba(0,0,0,.5);}
   .header__inner{display:flex; align-items:center; justify-content:space-between; padding:14px 24px; position:relative;}
@@ -38,14 +46,15 @@
   nav ul{list-style:none; display:flex; gap:34px;}
   nav a{text-decoration:none; font-weight:600; font-size:13px; letter-spacing:.14em; text-transform:uppercase; padding:6px 0; border-bottom:2px solid transparent; transition:border-color .2s,color .2s;}
   nav a:hover{color:var(--accent); border-color:var(--accent);}
-  .burger{display:none; flex-direction:column; gap:4px; background:none; border:0; cursor:pointer; padding:6px;}
+  .burger{display:none; flex-direction:column; gap:4px; background:none; border:0; cursor:pointer; padding:0; width:44px; height:44px; align-items:center; justify-content:center;}
   .burger span{width:24px; height:2px; background:var(--ink);}
   .mobile-menu{display:none; position:absolute; top:100%; left:0; right:0; background:var(--card); border-bottom:1px solid var(--line); flex-direction:column; padding:12px 24px;}
   .mobile-menu.open{display:flex;}
+  @media(min-width:821px){.mobile-menu,.mobile-menu.open{display:none;}}
   .mobile-menu a{padding:14px 0; text-decoration:none; font-weight:600; border-bottom:1px solid var(--line); text-transform:uppercase; letter-spacing:.14em; font-size:14px;}
 
   /* buttons */
-  .btn{display:inline-block; padding:14px 28px; border-radius:2px; font-weight:700; text-decoration:none; font-size:13px; text-transform:uppercase; letter-spacing:.14em; border:2px solid transparent; cursor:pointer; transition:transform .2s, background .2s, box-shadow .2s, color .2s;}
+  .btn{display:inline-block; padding:14px 28px; border-radius:2px; font-weight:700; text-decoration:none; font-size:13px; text-transform:uppercase; letter-spacing:.14em; border:2px solid transparent; min-height:44px; cursor:pointer; transition:transform .2s, background .2s, box-shadow .2s, color .2s;}
   .btn:hover{transform:translateY(-2px);}
   .btn--accent{background:var(--accent); color:#171310; box-shadow:0 0 0 rgba(240,169,59,0);}
   .btn--accent:hover{background:#ffbb52; box-shadow:var(--glow);}
@@ -101,7 +110,8 @@
   .strip::before{content:""; position:absolute; inset:0; background:linear-gradient(180deg, rgba(18,15,12,.82), rgba(18,15,12,.6) 50%, rgba(18,15,12,.88)), radial-gradient(70% 90% at 50% 50%, rgba(240,169,59,.18), transparent 70%);}
   .strip .grid{position:relative; display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr)); gap:clamp(28px,5vw,48px) 24px; text-align:center;}
   .strip .grid > div{padding:0 8px;}
-  .strip h3{font-size:clamp(56px,10vw,112px); color:var(--accent); font-weight:700; text-shadow:0 0 40px rgba(240,169,59,.5); line-height:1;}
+  .strip .stat{font-family:'Oswald',sans-serif; text-transform:uppercase; letter-spacing:.02em; font-weight:700;}
+  .strip .stat{font-size:clamp(56px,10vw,112px); color:var(--accent); font-weight:700; text-shadow:0 0 40px rgba(240,169,59,.5); line-height:1;}
   .strip p{color:var(--chalk); font-size:13px; letter-spacing:.28em; text-transform:uppercase; margin-top:12px;}
   .band{height:clamp(200px,34vw,420px); background:url('https://images.pexels.com/photos/33749073/pexels-photo-33749073.jpeg?auto=compress&cs=tinysrgb&w=1600') center 40%/cover; position:relative; border-top:1px solid #000; border-bottom:1px solid #000;}
   .band::after{content:""; position:absolute; inset:0; background:linear-gradient(180deg, var(--bg), rgba(18,15,12,.15) 30%, rgba(18,15,12,.15) 70%, var(--card));}
@@ -146,7 +156,7 @@
   /* FAQ */
   .faq{max-width:900px; margin:0; border-top:1px solid var(--line);}
   .faq details{border-bottom:1px solid var(--line); padding:22px 4px;}
-  .faq summary{cursor:pointer; font-weight:600; list-style:none; text-transform:none; font-family:'Oswald',sans-serif; font-size:clamp(20px,2.6vw,26px); letter-spacing:.02em; padding-right:40px; position:relative;}
+  .faq summary{cursor:pointer; min-height:44px; font-weight:600; list-style:none; text-transform:none; font-family:'Oswald',sans-serif; font-size:clamp(20px,2.6vw,26px); letter-spacing:.02em; padding-right:40px; position:relative;}
   .faq summary::-webkit-details-marker{display:none;}
   .faq summary::after{content:"+"; position:absolute; right:0; top:-2px; font-size:30px; line-height:1; color:var(--accent); font-family:'Work Sans',sans-serif; font-weight:300;}
   .faq details[open] summary::after{content:"\2013";}
@@ -176,20 +186,28 @@
     nav{display:none;} .burger{display:flex;}
     .owner{grid-template-columns:1fr;}
     .owner figure{max-width:260px;}
-    .map-contact{grid-template-columns:1fr;}
     .sticky-cta{display:flex;}
     footer{padding-bottom:100px;}
     .hero{min-height:80vh;}
   }
+  @media(max-width:1024px){.map-contact{grid-template-columns:1fr;}}
   @media(max-width:480px){
     .hours-grid{grid-template-columns:1fr;}
     .hero__actions .btn{flex:1 1 100%; text-align:center;}
     .topbar__inner{justify-content:center; text-align:center;}
   }
-  @media(prefers-reduced-motion:reduce){.reveal{transition:none;} .btn,.board,.poster,.review{transition:none;}}
+  @media(prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto;}
+    *,*::before,*::after{transition:none !important; animation:none !important;}
+    .js .reveal{opacity:1; transform:none;}
+    .btn:hover,.board:hover,.review:hover,.poster:hover{transform:none;}
+    .strip,.band{background-attachment:scroll;}
+  }
 </style>
 </head>
 <body>
+<script>if('IntersectionObserver' in window){document.documentElement.classList.add('js');}</script>
+<a class="skip-link" href="#main">Skip to content</a>
 
 <div class="topbar">
   <div class="wrap topbar__inner">
@@ -205,7 +223,7 @@
 <header id="siteHeader">
   <div class="wrap header__inner">
     <a class="brand" href="#top">Backyard <span>B&amp;G</span></a>
-    <nav>
+    <nav aria-label="Primary">
       <ul>
         <li><a href="#menu">Menu</a></li>
         <li><a href="#events">Events</a></li>
@@ -213,7 +231,7 @@
         <li><a href="#contact">Visit</a></li>
       </ul>
     </nav>
-    <button class="burger" id="burgerBtn" aria-label="Menu"><span></span><span></span><span></span></button>
+    <button class="burger" id="burgerBtn" type="button" aria-label="Menu" aria-controls="mobileMenu" aria-expanded="false"><span></span><span></span><span></span></button>
     <div class="mobile-menu" id="mobileMenu">
       <a href="#menu">Menu</a>
       <a href="#events">Events</a>
@@ -223,6 +241,7 @@
   </div>
 </header>
 
+<main id="main" tabindex="-1">
 <section class="hero" id="top">
   <div class="hero__inner">
     <span class="hero__tag">Bar &amp; Grill · Northfield</span>
@@ -306,9 +325,9 @@
 <section class="strip" aria-label="At a glance">
   <div class="wrap grid">
     <!-- PLACEHOLDER: confirm years trading, live sport and parking with the owner -->
-    <div class="reveal"><h3>15+</h3><p>Years Serving Northfield</p></div>
-    <div class="reveal"><h3>Live</h3><p>Sport On Screen</p></div>
-    <div class="reveal"><h3>Free</h3><p>Parking Nearby</p></div>
+    <div class="reveal"><div class="stat">15+</div><p>Years Serving Northfield</p></div>
+    <div class="reveal"><div class="stat">Live</div><p>Sport On Screen</p></div>
+    <div class="reveal"><div class="stat">Free</div><p>Parking Nearby</p></div>
     <!-- /PLACEHOLDER -->
   </div>
 </section>
@@ -425,6 +444,7 @@
     </div>
   </div>
 </section>
+</main>
 
 <footer>
   <p>&copy; 2026 Backyard Bar &amp; Grill, Northfield, Birmingham.</p>
@@ -440,33 +460,53 @@
 <script>
   const burger = document.getElementById('burgerBtn');
   const menu = document.getElementById('mobileMenu');
-  burger.addEventListener('click', () => menu.classList.toggle('open'));
-
   const header = document.getElementById('siteHeader');
-  window.addEventListener('scroll', () => header.classList.toggle('scrolled', window.scrollY > 10));
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+  function setMenu(open, returnFocus){
+    menu.classList.toggle('open', open);
+    burger.setAttribute('aria-expanded', String(open));
+    if(!open && returnFocus) burger.focus();
+  }
+  burger.addEventListener('click', () => setMenu(!menu.classList.contains('open')));
+  document.addEventListener('keydown', (e) => {
+    if(e.key === 'Escape' && menu.classList.contains('open')) setMenu(false, true);
+  });
+  window.matchMedia('(min-width: 821px)').addEventListener('change', (e) => { if(e.matches) setMenu(false); });
+
+  function syncHeader(){
+    header.classList.toggle('scrolled', window.scrollY > 10);
+    document.documentElement.style.setProperty('--hh', header.offsetHeight + 'px');
+  }
+  window.addEventListener('scroll', syncHeader, { passive: true });
+  window.addEventListener('resize', syncHeader);
+  syncHeader();
 
   function smoothScrollTo(id){
     const target = document.getElementById(id);
     if(!target) return;
-    const headerH = header.offsetHeight;
-    const top = target.getBoundingClientRect().top + window.scrollY - headerH - 12;
-    window.scrollTo({ top: Math.max(top, 0), behavior: 'smooth' });
+    const top = target.getBoundingClientRect().top + window.scrollY - header.offsetHeight - 12;
+    window.scrollTo({ top: Math.max(top, 0), behavior: reduceMotion.matches ? 'auto' : 'smooth' });
+    if(!target.hasAttribute('tabindex')) target.setAttribute('tabindex', '-1');
+    target.focus({ preventScroll: true });
   }
   document.querySelectorAll('a[href^="#"]').forEach(link => {
     const id = link.getAttribute('href').slice(1);
     if(!document.getElementById(id)) return;
     link.addEventListener('click', (e) => {
       e.preventDefault();
-      menu.classList.remove('open');
+      setMenu(false);
       smoothScrollTo(id);
       history.replaceState(null, '', '#' + id);
     });
   });
 
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
-  }, { threshold: 0.15 });
-  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  if('IntersectionObserver' in window){
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { threshold: 0.15 });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  }
 </script>
 
 </body>
